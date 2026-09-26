@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="cs">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Zásady ochrany osobních údajů — Smart Multi-Mail</title>
+<style>
+:root {
+  --bg: #ffffff;
+  --surface: #f6f7fb;
+  --ink: #16181d;
+  --ink-soft: #4b5160;
+  --rule: #dfe3ec;
+  --accent: #2f4bc4;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #101218;
+    --surface: #191c24;
+    --ink: #eceef4;
+    --ink-soft: #a6acbb;
+    --rule: #2a2e39;
+    --accent: #93a3ff;
+  }
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  padding: 3rem 1.25rem 5rem;
+  background: var(--bg);
+  color: var(--ink);
+  font: 17px/1.65 system-ui, -apple-system, "Segoe UI", sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+main { max-width: 42rem; margin: 0 auto; }
+
+h1 {
+  font-size: clamp(1.9rem, 5vw, 2.6rem);
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  margin: 0 0 0.5rem;
+}
+
+h2 {
+  font-size: 1.2rem;
+  letter-spacing: -0.01em;
+  margin: 2.5rem 0 0.75rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--rule);
+}
+
+p, li { color: var(--ink-soft); margin: 0 0 1rem; }
+li { margin-bottom: 0.5rem; }
+strong { color: var(--ink); font-weight: 600; }
+a { color: var(--accent); text-underline-offset: 3px; }
+
+.lede { font-size: 1.1rem; margin-bottom: 2rem; }
+
+.updated {
+  font-size: 0.875rem;
+  color: var(--ink-soft);
+  margin-bottom: 2.5rem;
+}
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--rule);
+  border-radius: 10px;
+  padding: 1.1rem 1.3rem;
+  margin: 0 0 1rem;
+}
+
+.card p:last-child { margin-bottom: 0; }
+
+nav.links { display: flex; flex-wrap: wrap; gap: 1.25rem; margin-top: 2rem; }
+
+footer {
+  max-width: 42rem;
+  margin: 4rem auto 0;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--rule);
+  font-size: 0.875rem;
+  color: var(--ink-soft);
+}
+
+footer a { margin-right: 1.25rem; }
+</style>
+</head>
+<body>
+<main>
+
+  <h1>Zásady ochrany osobních údajů</h1>
+  <p class="updated">Smart Multi-Mail · poslední aktualizace 24. srpna 2026</p>
+
+  <p class="lede">
+    Smart Multi-Mail je soukromá aplikace pro jednoho uživatele — jejího provozovatele.
+    Nemá další uživatele, nenabízí registraci a nikomu neposkytuje žádná data.
+  </p>
+
+  <div class="card">
+    <p>
+      <strong>Aplikace neběží na cizí infrastruktuře.</strong> Backend si provozuje
+      uživatel sám na svém počítači. Data neprochází přes žádný server třetí strany.
+    </p>
+  </div>
+
+  <h2>K čemu aplikace přistupuje</h2>
+  <p>Po přihlášení přes Google si vyžádá tato oprávnění:</p>
+  <ul>
+    <li><strong>gmail.readonly</strong> — čtení zpráv, aby je aplikace mohla zobrazit.</li>
+    <li><strong>gmail.send</strong> — odeslání odpovědi, kterou uživatel sám napsal a potvrdil.</li>
+    <li><strong>userinfo.email</strong> a <strong>openid</strong> — zjištění adresy připojeného účtu,
+      aby ji aplikace uměla rozlišit od ostatních.</li>
+  </ul>
+  <p>
+    Aplikace nemůže mazat zprávy ani měnit nastavení účtu. Nepřistupuje k Disku,
+    kontaktům, fotkám ani kalendáři.
+  </p>
+
+  <h2>Co se ukládá a co ne</h2>
+  <p><strong>Obsah e-mailů se neukládá.</strong> Zprávy zůstávají na serverech Googlu a
+    aplikace je načítá z Gmail API až ve chvíli, kdy se na ně uživatel dívá.</p>
+  <p>Do lokální databáze se ukládá pouze:</p>
+  <ul>
+    <li>přístupový (refresh) token ke každému připojenému účtu, <strong>šifrovaný
+      algoritmem AES-256-GCM</strong>;</li>
+    <li>e-mailová adresa a jméno účtu, aby šlo rozlišit, odkud zpráva přišla;</li>
+    <li>barva přiřazená účtu a názvy skupin, které si uživatel vytvořil.</li>
+  </ul>
+  <p>
+    Databáze je soubor na počítači uživatele. Neopouští jeho zařízení a není zálohována
+    nikam do cloudu.
+  </p>
+
+  <h2>Komu se data předávají</h2>
+  <p>
+    Nikomu. Aplikace neobsahuje reklamu, analytiku ani měřicí kódy. Nekomunikuje
+    s žádnou službou kromě rozhraní Google, které je nutné pro její vlastní chod.
+    Data se neprodávají, nesdílejí ani nepoužívají k trénování modelů.
+  </p>
+
+  <h2>Soulad s pravidly Google API</h2>
+  <p>
+    Nakládání s daty získanými z rozhraní Google API se řídí
+    <a href="https://developers.google.com/terms/api-services-user-data-policy">Google API
+    Services User Data Policy</a> včetně požadavků na omezené použití
+    (<em>Limited Use</em>). Data z Gmailu slouží výhradně k zobrazení pošty a odeslání
+    odpovědi v této aplikaci — k ničemu jinému.
+  </p>
+
+  <h2>Jak přístup odebrat</h2>
+  <p>
+    Účet lze kdykoli odpojit přímo v aplikaci; tím se smaže uložený token i metadata.
+    Nezávisle na tom lze přístup odvolat na straně Googlu na stránce
+    <a href="https://myaccount.google.com/permissions">myaccount.google.com/permissions</a>.
+    V obou případech ztratí aplikace přístup okamžitě. V Gmailu se nic nesmaže.
+  </p>
+
+  <h2>Kontakt</h2>
+  <p>
+    Aplikaci provozuje jediná soukromá osoba pro vlastní potřebu. Kontaktní adresa je
+    uvedena na souhlasné obrazovce Google, která se zobrazí při připojení účtu.
+  </p>
+
+</main>
+
+<footer>
+  <a href="index.html">Úvod</a>
+  <a href="privacy.html">Soukromí</a>
+  <a href="terms.html">Podmínky</a>
+</footer>
+</body>
+</html>
